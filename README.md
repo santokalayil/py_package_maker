@@ -7,6 +7,20 @@
 This library will initialise the working directory as a package that can be installed by pip
 
 ### How to install:
+Installing from git main branch
+```
+$ pip install git+https://github.com/santokalayil/py_package_maker.git
+```
+
+Installing from git development branch
 ```
 $ pip install git+https://github.com/santokalayil/py_package_maker.git@dev
+```
+
+### Usage:
+
+```
+$ mkdir package_name
+$ cd package_name
+$ python -m py_package_maker
 ```
