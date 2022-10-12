@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='py_package_maker',
-    version='0.1.0',    
+    version='0.2.0',    
     description='This library will initialise the working directory as a package that can be installed by pip',
     url='https://github.com/santokalayil/py_package_maker',
     author='Santo K Thomas',
