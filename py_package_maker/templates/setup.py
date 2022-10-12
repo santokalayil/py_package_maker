@@ -9,6 +9,16 @@ install_requires = ['setuptools', 'jinja2>=3.1.0']
 
 SETUP_PY_TEMPLATE = '''
 from setuptools import setup, find_packages
+from setuptools.command.build_py import build_py
+
+class install_py(build_py):
+    def run(self) -> None:
+        # do somethis here
+        print("INSTALLING [ {{ name }} ] for Ezetap..")
+
+        super().run()
+
+
 
 setup(
     name='{{ name }}',
@@ -18,8 +28,34 @@ setup(
     author='{{ author }}',
     author_email='{{ author_email }}',
     license='{{ license }}',
-    packages=find_packages(include=('{{ name }}','{{ name }}.*')),
+    # packages=find_packages(include=('{{ name }}','{{ name }}.*')),
+
+    packages=find_packages(
+        include=(
+            '{{ name }}',
+            # '{{ name }}.*', 
+            # '{{ name }}.errors.*',
+        )
+    ),
+
     install_requires={{ install_requires }},
+
+    cmdclass={'build_py': install_py},
+
+    # this is to include datafiles listed in the MANIFEST.in  file
+    # include_package_data=True,
+    # package_data={
+    #     '{{ name }}': [
+    #         'assets/configuration.yaml',
+    #         # 'media/.*',
+    #         'assets/media/logos/manual_references/*.png',
+    #         'assets/media/logos/ideal_references/*',
+    #         'assets/media/screenshots/original/*.png',
+    #         'assets/media/screenshots/cropped/*.png',
+    #         'assets/media/screenshots/padded/*.png',
+    #         
+    #     ]
+    # },
 
     classifiers=[
         'License :: OSI Approved :: {{ license_name }} License',  

@@ -1,0 +1,3 @@
+from . import initializer
+
+initializer()
