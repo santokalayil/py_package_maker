@@ -25,7 +25,7 @@ To structure a project with multiple scripts and a developing package using Poet
 3. *Develop Scripts:*
    Create another directory for your scripts, such as `scripts`. Each script can be in its own file within this directory.
 
-   
+```   
    your_project_name/
    ├── pyproject.toml
    ├── your_package/
@@ -36,25 +36,25 @@ To structure a project with multiple scripts and a developing package using Poet
    │   └── script2.py
    └── your_project_name/
        └── __init__.py
-   
+```
 
 4. *Handle Package Dependencies:*
    In the `pyproject.toml` file at the root level, add your package as a dependency. Ensure you use a relative path for local development.
 
-   toml
+   ```toml
    [tool.poetry.dependencies]
    python = "^3.8"
    your-package-name = { path = "your_package" }
-   
+   ```
 
    This setup allows you to make changes to your package code and test it locally within your project.
 
 5. *Install Package for Development:*
    During development, install the package in editable mode:
 
-   bash
+   ```bash
    poetry install
-   
+   ```
 
    This will create a virtual environment and install your package in editable mode, allowing you to make changes to your package and see the effects without reinstalling it.
 
@@ -64,16 +64,16 @@ To structure a project with multiple scripts and a developing package using Poet
 7. *Distribution:*
    When you are ready to distribute your package, you can publish it to a package repository (e.g., PyPI) using the `poetry publish` command. This makes it pip installable.
 
-   bash
+   ```bash
    poetry publish --build
-   
+   ```
 
 8. *Deploy Scripts:*
    Deploy your scripts to the desired location. You can use packaging tools like `pyinstaller` or `cx_Freeze` to create standalone executables if needed.
 
-   bash
+   ```bash
    pyinstaller script1.py
-   
+   ```
 
 By following this structure, you can maintain a clean separation between your package development and script development. Additionally, your package remains installable both in local development and on servers using either Poetry or pip.
 
@@ -84,7 +84,7 @@ Yes, if your package requires additional files such as configuration JSON files,
 1. *Organize Files:*
    Place your configuration JSON files and any other necessary files within your package directory. For example:
 
-   
+   ```
    your_package/
    ├── __init__.py
    ├── your_module.py
@@ -93,31 +93,31 @@ Yes, if your package requires additional files such as configuration JSON files,
    │   └── config2.json
    └── other_files/
        └── file1.txt
-   
+   ```
 
 2. *Accessing Files in Package Code:*
    In your package code (`your_module.py` or other files), you can access these files using relative paths or package-relative paths.
 
-   python
+   ```python
    import os
 
    config_path = os.path.join(os.path.dirname(__file__), 'config', 'config1.json')
    with open(config_path, 'r') as file:
        config_data = json.load(file)
-   
+   ```
 
    This allows your package code to access the configuration files and other necessary files when the package is installed.
 
 3. *Including Files in Distribution:*
    Update your `pyproject.toml` file to include these files in the distribution. You can use the `package.include` section for this purpose.
 
-   toml
+   ```toml
    [tool.poetry]
    # ... other configuration ...
 
    [tool.poetry.package]
    include = ["your_package/config/*.json", "your_package/other_files/*.txt"]
-   
+   ```
 
    This ensures that these files are included when your package is built and distributed.
 
@@ -137,12 +137,12 @@ The wheel distribution format is a binary distribution format that is more effic
 
 When you run `poetry publish --build`, Poetry creates these distribution packages in the `dist` directory within your project. The directory structure might look like this:
 
-
+```
 your_project_name/
 ├── dist/
 │   ├── your_package_name-1.0.0-py3-none-any.whl
 │   └── your_package_name-1.0.0.tar.gz
-
+```
 
 Here, `your_package_name-1.0.0` represents the version number of your package. The `.whl` file is the wheel distribution, and the `.tar.gz` file is the source distribution.
 
