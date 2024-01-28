@@ -12,7 +12,7 @@ To structure a project with multiple scripts and a developing package using Poet
 2. *Separate Package Development:*
    Inside the project, create a directory for your package, let's call it `your_package`. Place the actual source code of your package inside this directory. Ensure that your package has a `pyproject.toml` file with the necessary metadata for building the package.
 
-
+```
    your_project_name/
    ├── pyproject.toml
    ├── your_package/
@@ -20,7 +20,7 @@ To structure a project with multiple scripts and a developing package using Poet
    │   └── your_module.py
    └── your_project_name/
        └── __init__.py
-   
+```
 
 3. *Develop Scripts:*
    Create another directory for your scripts, such as `scripts`. Each script can be in its own file within this directory.
